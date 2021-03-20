@@ -19,7 +19,7 @@ def home(request):
     #             name = pokemon['name']
     #             print(name)
     url= 'http://api.openweathermap.org/data/2.5/weather?q={}&APPID=f90ad0886c327876a42b2994b9e62f46'
-    city = 'Las Vegas'
+    city = 'Rosario'
 
     r = requests.get(url.format(city)).json()
     s = requests.get(url.format(city))

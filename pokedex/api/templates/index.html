@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+</head>
+<body>
+    <section>
+        <!-- <div>
+            <h1>Django-Pokedex</h1>
+            <h2>Lista de todos los pokemons</h2>
+            {% for pokemon in result %}
+            <p>Name: {{pokemon.name}}</p>
+            <p>Url: {{pokemon.url}}</p>
+            {% endfor %}
+            <a href="#">Next</a>
+        </div> -->
+        <div>
+            <h2>Clima </h2>
+            <p>
+                {{city_weather.city}}
+                {{city_weather.temperature}}
+                {{city_weather.description}}
+                {{city_weather.icon}}
+            </p>
+        </div>
+    </section>
+</body>
+</html>
