@@ -54,12 +54,6 @@ def home(request):
     cities= City.objects.all()
 
     weather_data = []
-    context = {
-        'form': form,
-        'weather_data': weather_data,
-        'message': message,
-        'msg_class': msg_class,
-    }
     # r = requests.get(url.format(city)).json()
     # s = requests.get(url.format(city))
 
@@ -77,7 +71,26 @@ def home(request):
         }
         weather_data.append(city_weather)
 
-    print(weather_data)
+
+    
+    # Obtener datos del request mediante API de geolocalización
+    geo = requests.get('http://api.ipstack.com/check?access_key=3869cfb608c56dffdc9fd02aa38ba217')
+    geo_json = geo.json()
+    print(geo_json)
+    
+    usuario = {
+        'ip': geo_json['ip'],
+        'pais': geo_json['country_name'],
+        'ciudad': geo_json['city'],
+    }
+    context = {
+        'form': form,
+        'weather_data': weather_data,
+        'message': message,
+        'msg_class': msg_class,
+        'usuario': usuario,
+    }
+
     return render(request, 'api/index.html', context)
 
 def removeCity(request, city):
