@@ -26,22 +26,15 @@
 							<ul class="actions stacked">
 								<li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
 							</ul> -->
-							<div>
-								<h2>Clima </h2>
-								<p>
-									{{city_weather.city}}
-									{{city_weather.temperature}}
-									{{city_weather.description}}
-									{{city_weather.icon}}
-								</p>
-							</div>
+							
 						</div>
 						<div class="image">
+							
 							<img src="{% static 'pokedex/images/banner.jpg' %}" alt="" />
 						</div>
 					</section>
-
-				<!-- Two -->
+<!-- 
+				Two
 					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
 						<div class="content">
 							<h2>Magna etiam feugiat</h2>
@@ -55,7 +48,7 @@
 						</div>
 					</section>
 
-				<!-- Three -->
+				Three
 					<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in">
 						<div class="content">
 							<h2>Tempus adipiscing</h2>
@@ -69,7 +62,7 @@
 						</div>
 					</section>
 
-				<!-- Four -->
+				Four
 					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in">
 						<div class="content">
 							<h2>Pharetra etiam nulla</h2>
@@ -83,14 +76,14 @@
 						</div>
 					</section>
 
-				<!-- Five -->
+				Five
 					<section class="wrapper style1 align-center">
 						<div class="inner">
 							<h2>Massa sed condimentum</h2>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum.</p>
 						</div>
 
-						<!-- Gallery -->
+						Gallery
 							<div class="gallery style2 medium lightbox onscroll-fade-in">
 								<article>
 									<a href="{% static 'pokedex/images/gallery/fulls/01.jpg' %}" class="image">
@@ -238,19 +231,46 @@
 								</article>
 							</div>
 
-					</section>
+					</section> -->
 
 				<!-- Six -->
 					<section class="wrapper style1 align-center">
 						<div class="inner">
-							<h2>Ipsum sed consequat</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum.</p>
+							<h2>Clima API</h2>
+							<p>Primer parrafo.</p>	<div>
+								{% if message %}
+								<div class="{{msg_class}}">{{message}}</div>
+								{% endif %}
+								<form action="" method="post">
+									{% csrf_token %}
+									{{form.name}}
+									<button type="submit">Buscar el Clima</button>
+								</form>
+							</div>	
+							<p>
+								<!-- {{city_weather.city}}
+								{{city_weather.temperature}}
+								{{city_weather.description}}
+								{{city_weather.icon}} -->
+									
+							</p>
 							<div class="items style1 medium onscroll-fade-in">
+								{% for city_weather in weather_data %}
 								<section>
-									<span class="icon style2 major fa-gem"></span>
-									<h3>Lorem</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dui turpis, cursus eget orci amet aliquam congue semper. Etiam eget ultrices risus nec tempor elit.</p>
+									<span class="icon style2 major fa-gem">{{city_weather.icon}}</span>
+									<h3>Ciudad: {{city_weather.city}}</h3>
+									<p>
+										Temperatura: {{city_weather.temperature}} <br>
+										Descripción: {{city_weather.description}} <br>
+										
+									</p>
+									<a href="{% url 'delete' city_weather.city %}">
+										<button class="delete">
+											Eliminar
+										</button>
+									</a>					
 								</section>
+								{% endfor %}
 								<section>
 									<span class="icon solid style2 major fa-save"></span>
 									<h3>Ipsum</h3>
